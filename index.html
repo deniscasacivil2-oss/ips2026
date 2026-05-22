@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução do IPS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f1f5f9; color: #1e293b; overflow-x: hidden; }
+        .sidebar { background-color: #003366; transition: all 0.3s ease; position: relative; z-index: 40; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.15); border: 1px solid #e2e8f0; }
+        .nav-link { transition: all 0.2s; border-radius: 8px; white-space: nowrap; overflow: hidden; cursor: pointer; }
+        .nav-link.active { background-color: #ffb800; color: #003366 !important; font-weight: 600; }
+        .text-navy { color: #003366; }
+        .text-gold { color: #ffb800; }
+        .bg-navy { background-color: #003366; }
+        .bg-gold { background-color: #ffb800; }
+        
+        .section-content { display: none; }
+        .section-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-container img { object-fit: contain; transition: all 0.3s ease; }
+
+        .sidebar.collapsed { width: 5rem !important; }
+        .sidebar.collapsed .sidebar-text { display: none; opacity: 0; }
+        .sidebar.collapsed .nav-link { justify-content: center; padding-left: 0; padding-right: 0; }
+        .sidebar.collapsed .nav-link i { margin-right: 0 !important; font-size: 1.25rem; }
+        .sidebar.collapsed .logo-container img { height: 2rem; }
+        .sidebar.collapsed .sidebar-footer { padding: 1rem 0.5rem; text-align: center; }
+        .sidebar.collapsed .sidebar-footer p { display: none; }
+        .sidebar.collapsed .sidebar-footer i { display: block; font-size: 1.2rem; }
+        .sidebar-footer i { display: none; } 
+        #sidebar-toggle-btn { transition: transform 0.3s ease; }
+        .sidebar.collapsed #sidebar-toggle-btn { transform: rotate(180deg); right: -12px; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+
+    <aside id="sidebar" class="sidebar w-64 text-white flex-shrink-0 flex flex-col hidden md:flex absolute md:relative min-h-screen">
+        <button id="sidebar-toggle-btn" onclick="toggleSidebar()" class="hidden md:flex absolute -right-3 top-6 bg-white text-navy w-6 h-6 rounded-full items-center justify-center shadow-md border border-gray-200 hover:bg-gray-100 z-50">
+            <i class="fa-solid fa-chevron-left text-[10px]"></i>
+        </button>
+
+        <div class="p-6 text-center border-b border-blue-900 transition-all duration-300">
+            <div class="bg-white p-2 rounded-lg mb-4 inline-block logo-container shadow-lg">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Bras%C3%A3o_de_Ol%C3%ADmpia%2C_SP.jpg" alt="Brasão de Olímpia" class="h-16">
+            </div>
+            <h2 class="sidebar-text text-[10px] font-bold tracking-widest uppercase text-blue-100 leading-tight px-2">Análise IPS 2026 - Divisão de Análise de Dados e Indicadores</h2>
+        </div>
+        
+        <nav class="flex-grow p-4 space-y-2 mt-4">
+            <a onclick="showSection('pagina-1', this)" class="nav-link active flex items-center p-3 text-blue-100 hover:bg-blue-800" title="Visão Geral">
+                <i class="fa-solid fa-gauge-high w-6 text-center mr-3"></i>
+                <span class="sidebar-text">Visão Geral</span>
+            </a>
+            <a onclick="showSection('pagina-2', this)" class="nav-link flex items-center p-3 text-blue-100 hover:bg-blue-800" title="Evolução dos Eixos">
+                <i class="fa-solid fa-chart-pie w-6 text-center mr-3"></i>
+                <span class="sidebar-text">Evolução dos Eixos</span>
+            </a>
+            <a onclick="showSection('pagina-3', this)" class="nav-link flex items-center p-3 text-blue-100 hover:bg-blue-800" title="Análise Estratégica DADI">
+                <i class="fa-solid fa-clipboard-check w-6 text-center mr-3"></i>
+                <span class="sidebar-text">Análise</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer p-6 bg-blue-950 text-[10px] text-blue-300 mt-auto border-t border-blue-900 transition-all duration-300">
+            <p class="font-bold">Setor de Monitoramento e Avaliação de Indicadores</p>
+            <p>Casa Civil | Município de Olímpia - SP</p>
+            <i class="fa-solid fa-chart-line text-blue-300 mx-auto" title="DADI - Casa Civil"></i>
+        </div>
+    </aside>
+
+    <main class="flex-grow flex flex-col min-w-0">
+        <header class="bg-white border-b h-16 flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleMobileMenu()" class="md:hidden text-navy"><i class="fa-solid fa-bars text-xl"></i></button>
+                <h1 id="page-title" class="text-xl font-bold text-navy uppercase tracking-tight">Visão Geral (IPS e Rankings)</h1>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-100 text-navy px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Ano 2026</span>
+                <div class="h-8 w-8 rounded-full bg-navy text-gold flex items-center justify-center font-bold text-xs shadow-md border-2 border-gold">OP</div>
+            </div>
+        </header>
+
+        <div class="p-8 overflow-y-auto max-w-7xl mx-auto w-full">
+            
+            <!-- PÁGINA 1: VISÃO GERAL -->
+            <section id="pagina-1" class="section-content active">
+                
+                <!-- KPIs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="card p-6 border-l-8 border-navy relative overflow-hidden">
+                        <p class="text-navy text-xs font-black uppercase tracking-wider mb-1">IPS Geral (2026)</p>
+                        <h3 class="text-4xl font-bold text-navy">68,07</h3>
+                        <p class="text-[10px] text-green-700 mt-2 font-bold bg-green-50 px-2 py-1 rounded-md inline-block">+3,75 (vs 2024)</p>
+                    </div>
+                    <div class="card p-6 border-l-8 border-green-600 relative overflow-hidden">
+                        <p class="text-gray-700 text-xs font-black uppercase tracking-wider mb-1">Ranking Nacional</p>
+                        <h3 class="text-4xl font-bold text-green-700">169º</h3>
+                        <p class="text-[10px] text-gray-800 mt-2 font-bold italic">Evolução de 565º em 2024</p>
+                    </div>
+                    <div class="card p-6 border-l-8 border-[#ffb800] relative overflow-hidden">
+                        <p class="text-gray-700 text-xs font-black uppercase tracking-wider mb-1">Ranking Estadual</p>
+                        <h3 class="text-4xl font-bold text-navy">111º</h3>
+                        <p class="text-[10px] text-orange-700 mt-2 font-bold">Evolução de 283º em 2024</p>
+                    </div>
+                    <div class="card p-6 border-l-8 border-blue-500 relative overflow-hidden">
+                        <p class="text-gray-700 text-xs font-black uppercase tracking-wider mb-1">Evolução Acumulada</p>
+                        <h3 class="text-4xl font-bold text-blue-600">+3,75</h3>
+                        <p class="text-[10px] text-blue-800 mt-2 font-bold">Avanço rápido (2 ciclos)</p>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg mb-8 text-sm text-blue-900 font-medium shadow-sm">
+                    <i class="fa-solid fa-circle-info mr-2 text-blue-600"></i> O crescimento acumulado de <strong>+3,75 pontos</strong> em apenas dois ciclos representa uma evolução bastante relevante dentro da metodologia do IPS, pois normalmente os avanços nestes indicadores são lentos e graduais.
+                </div>
+
+                <!-- SEÇÃO 1: VISÃO MACRO (Gráficos Gerais) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    <div class="card p-6 flex flex-col">
+                        <h4 class="font-black text-navy text-sm uppercase tracking-widest border-b-2 border-gold pb-2 w-full mb-2">Curva de Crescimento do IPS Geral</h4>
+                        <p class="text-xs text-gray-500 mb-4 font-medium italic">Visualização da trajetória ascendente da nota geral do município nos últimos três anos.</p>
+                        <div class="h-64 w-full relative mt-auto"><canvas id="historicoLinhaChart"></canvas></div>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h4 class="font-black text-navy text-sm uppercase tracking-widest border-b-2 border-gold pb-2 w-full mb-2">Evolução nos Rankings</h4>
+                        <p class="text-xs text-gray-500 mb-4 font-medium italic">Comparativo do salto posicional do município no cenário estadual (SP) e nacional.</p>
+                        <div class="h-64 w-full relative mt-auto"><canvas id="rankingChart"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO 2: VISÃO MICRO (Análise Detalhada) -->
+                <h3 class="text-lg font-black text-navy uppercase tracking-tighter mb-4 px-1 border-l-4 border-navy pl-3">Análise Estrutural dos 12 Componentes</h3>
+                
+                <div class="grid grid-cols-1 gap-8 mb-8">
+                    <!-- Mapa de Calor -->
+                    <div class="card p-6">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
+                            <h4 class="font-black text-navy text-sm uppercase tracking-widest border-b-2 border-gold pb-2 w-full md:w-auto flex-grow">Mapa de Calor: Desempenho (2026)</h4>
+                            <div class="flex flex-wrap gap-2 text-[9px] font-bold">
+                                <span class="flex items-center"><span class="w-3 h-3 bg-red-600 rounded mr-1"></span>Crítico (&lt;50)</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-orange-500 rounded mr-1"></span>Atenção (50-65)</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-yellow-400 rounded mr-1"></span>Neutro (65-75)</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-green-500 rounded mr-1"></span>Forte (75-85)</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-green-700 rounded mr-1"></span>Consolidado (&gt;85)</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Distribuição exata das notas. Cores quentes (vermelho) indicam áreas críticas, enquanto cores frias (verde) indicam consolidação.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Eixo 1 -->
+                            <div class="space-y-2">
+                                <div class="bg-navy text-white text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Necessidades Básicas</div>
+                                <div class="bg-green-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Nutrição e Cuidados Básicos</span> <span class="font-black">75,72</span></div>
+                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Água e Saneamento</span> <span class="font-black">92,81</span></div>
+                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Moradia</span> <span class="font-black">96,21</span></div>
+                                <div class="bg-yellow-400 text-navy p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Segurança Pessoal</span> <span class="font-black">69,58</span></div>
+                            </div>
+                            <!-- Eixo 2 -->
+                            <div class="space-y-2">
+                                <div class="bg-gold text-navy text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Fundamentos do Bem-Estar</div>
+                                <div class="bg-green-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso ao Conhecimento</span> <span class="font-black">86,77</span></div>
+                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso à Informação</span> <span class="font-black">85,94</span></div>
+                                <div class="bg-orange-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Saúde e Bem-Estar</span> <span class="font-black">57,49</span></div>
+                                <div class="bg-yellow-400 text-navy p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Qualidade do Meio Ambiente</span> <span class="font-black">65,84</span></div>
+                            </div>
+                            <!-- Eixo 3 -->
+                            <div class="space-y-2">
+                                <div class="bg-navy text-white text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Oportunidades</div>
+                                <div class="bg-red-600 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Direitos Individuais</span> <span class="font-black">44,86</span></div>
+                                <div class="bg-yellow-400 text-navy p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Liberdade Pessoal</span> <span class="font-black">53,86</span></div>
+                                <div class="bg-red-600 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Inclusão Social</span> <span class="font-black">35,04</span></div>
+                                <div class="bg-red-600 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso ao Ensino Superior</span> <span class="font-black">52,70</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Radar -->
+                    <div class="card p-6">
+                        <h4 class="font-black text-navy text-sm mb-2 uppercase tracking-widest border-b-2 border-gold pb-2 w-full">Análise Radial Estrutural</h4>
+                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Representação gráfica do equilíbrio do município. Quanto mais largo e preenchido for o polígono, mais forte e equilibrado é o desenvolvimento em todas as áreas.</p>
+                        <div class="h-96 w-full relative"><canvas id="radarComponentesChart"></canvas></div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- PÁGINA 2: EVOLUÇÃO DOS EIXOS -->
+            <section id="pagina-2" class="section-content">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Eixo 1 -->
+                    <div class="card overflow-hidden">
+                        <div class="bg-navy p-4 flex justify-between items-center text-white">
+                            <h5 class="font-bold text-xs uppercase tracking-widest">Necessidades Básicas</h5>
+                            <i class="fa-solid fa-house-chimney-medical text-gold"></i>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <span class="text-4xl font-black text-navy">83,58</span>
+                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Estabilidade</span>
+                            </div>
+                            <ul class="text-xs space-y-2 mt-4 text-gray-600">
+                                <li><strong>Histórico:</strong> 81,17 (2024) → 83,72 (2025) → 83,58 (2026)</li>
+                                <li class="text-green-700"><strong>Destaques:</strong> Eixo muito consolidado. Pontos elevadíssimos em Moradia (96,23) e Água e Saneamento.</li>
+                                <li class="text-red-600 mt-2 p-2 bg-red-50 rounded"><strong>Ponto Crítico:</strong> Segurança pessoal (65,57) configura fragilidade importante desde 2024.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Eixo 2 -->
+                    <div class="card overflow-hidden">
+                        <div class="bg-gold p-4 flex justify-between items-center text-navy">
+                            <h5 class="font-bold text-xs uppercase tracking-widest">Fundamentos do Bem-Estar</h5>
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <span class="text-4xl font-black text-navy">74,01</span>
+                                <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">Recuperação</span>
+                            </div>
+                            <ul class="text-xs space-y-2 mt-4 text-gray-600">
+                                <li><strong>Histórico:</strong> 72,64 (2024) → 69,84 (2025) → 74,01 (2026)</li>
+                                <li class="text-green-700"><strong>Destaques:</strong> Apresentou o principal avanço estrutural no último ano.</li>
+                                <li class="mt-2 p-2 bg-yellow-50 rounded border-l-2 border-gold text-gray-800">Melhorias consistentes em conectividade, acesso à informação, ambiente urbano e qualidade ambiental.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Eixo 3 -->
+                    <div class="card overflow-hidden">
+                        <div class="bg-navy p-4 flex justify-between items-center text-white">
+                            <h5 class="font-bold text-xs uppercase tracking-widest">Oportunidades</h5>
+                            <i class="fa-solid fa-graduation-cap text-gold"></i>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <span class="text-4xl font-black text-navy">46,61</span>
+                                <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">+7,47 Acum.</span>
+                            </div>
+                            <ul class="text-xs space-y-2 mt-4 text-gray-600">
+                                <li><strong>Histórico:</strong> 39,14 (2024) → 46,25 (2025) → 46,61 (2026)</li>
+                                <li class="text-green-700"><strong>Destaques:</strong> Maior transformação estrutural do município.</li>
+                                <li class="mt-2 p-2 bg-gray-100 rounded text-gray-800 italic">Em 2024 era o principal gargalo (Inclusão: 27,36). O crescimento econômico não se convertia em inclusão social.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <div class="card p-6">
+                        <h4 class="font-black text-navy text-sm mb-4 uppercase tracking-widest border-b-2 border-gold pb-2 w-full">Evolução Histórica dos Eixos (2024 - 2026)</h4>
+                        <div class="h-80 w-full relative"><canvas id="eixosChart"></canvas></div>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="font-black text-navy text-sm mb-4 uppercase tracking-widest border-b-2 border-gold pb-2 w-full">Comparativo Componentes: Olímpia vs Brasil (2026)</h4>
+                        <div class="h-80 w-full relative"><canvas id="comparativoBrasilChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA 3: ANÁLISE ESTRATÉGICA -->
+            <section id="pagina-3" class="section-content">
+                <h3 class="text-lg font-black text-navy uppercase tracking-tighter mb-6">Fases da Evolução Institucional (2024 a 2026)</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <div class="card p-6 border-t-8 border-gray-400">
+                        <h4 class="font-black text-gray-700 text-sm mb-4 uppercase tracking-widest flex items-center">
+                            <i class="fa-solid fa-building mr-2 text-xl"></i> Fase 1: 2024
+                        </h4>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 h-full">
+                            <p class="text-xs font-bold text-navy uppercase mb-2">Base Desigual</p>
+                            <p class="text-xs text-gray-800">Município economicamente forte, infraestrutura bem estabelecida, porém com desigualdade social e estrutural muito elevada.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 border-t-8 border-blue-400">
+                        <h4 class="font-black text-navy text-sm mb-4 uppercase tracking-widest flex items-center">
+                            <i class="fa-solid fa-users mr-2 text-xl"></i> Fase 2: 2025
+                        </h4>
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200 h-full">
+                            <p class="text-xs font-bold text-navy uppercase mb-2">Construção Social</p>
+                            <p class="text-xs text-gray-800">Fase focada na consolidação da base social do município, mitigando os principais gargalos e carências.</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 border-t-8 border-gold">
+                        <h4 class="font-black text-navy text-sm mb-4 uppercase tracking-widest flex items-center">
+                            <i class="fa-solid fa-rocket mr-2 text-xl"></i> Fase 3: 2026
+                        </h4>
+                        <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200 h-full">
+                            <p class="text-xs font-bold text-navy uppercase mb-2">Avanço em Oportunidades</p>
+                            <p class="text-xs text-gray-800">Avanço expressivo em bem-estar geral e ampliação do acesso a oportunidades e equidade humana.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="card p-6 border-l-8 border-green-600">
+                        <h4 class="font-black text-green-700 text-sm mb-4 uppercase tracking-widest">PONTOS CONSOLIDADOS</h4>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Saneamento Básico</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Urbanização</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Moradia</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Educação Básica</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Conectividade</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Crescimento Econômico</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 border-l-8 border-red-500">
+                        <h4 class="font-black text-red-600 text-sm mb-4 uppercase tracking-widest">PRINCIPAIS DESAFIOS</h4>
+                        <ul class="space-y-3 mt-4">
+                            <li class="flex items-start text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Inclusão social e equidade contínua.
+                            </li>
+                            <li class="flex items-start text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Combate à violência estrutural e índices de segurança pessoal.
+                            </li>
+                            <li class="flex items-start text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Atenção prioritária à juventude vulnerável e igualdade racial/gênero.
+                            </li>
+                            <li class="flex items-start text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Geração e acesso a oportunidades e educação avançadas.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card p-8 bg-gradient-to-br from-[#003366] to-[#1e3a8a] text-white border-none shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl text-gold"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h4 class="text-2xl font-black uppercase tracking-tighter mb-4 text-gold italic">DIAGNÓSTICO E PROJEÇÃO FINAL</h4>
+                    <p class="text-sm font-light leading-relaxed max-w-4xl mb-4">
+                        O município resolveu boa parte da infraestrutura básica, começou a converter o crescimento econômico em bem-estar palpável para os cidadãos e entra agora em uma fase complexa de gestão voltada estritamente para equidade, inclusão, capital humano e oportunidades integradas.
+                    </p>
+                    <div class="bg-black/20 p-4 rounded-lg border-l-4 border-gold mt-6">
+                        <p class="text-sm font-bold leading-relaxed text-white">
+                            <i class="fa-solid fa-arrow-trend-up text-gold mr-2"></i> TENDÊNCIA PROJETADA: Se mantiver o ritmo atual, o município possui potencial real de ultrapassar os 70 pontos no IPS em curto prazo. Isso o consolidará entre os municípios com melhor desenvolvimento social do interior paulista.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        let charts = {};
+        Chart.defaults.font.family = "'Poppins', sans-serif";
+        Chart.defaults.color = '#475569';
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('collapsed');
+            setTimeout(() => {
+                Object.values(charts).forEach(chart => { if(chart) chart.resize(); });
+            }, 300);
+        }
+
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('hidden')) {
+                sidebar.classList.remove('hidden');
+                sidebar.classList.add('absolute', 'z-40', 'h-full', 'shadow-2xl');
+                sidebar.classList.remove('collapsed');
+            } else {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('absolute');
+            }
+        }
+
+        function showSection(sectionId, element) {
+            if (!element) return;
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+            
+            document.querySelectorAll('.section-content').forEach(section => section.classList.remove('active'));
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            const titles = {
+                'pagina-1': 'Visão Geral (IPS e Rankings)',
+                'pagina-2': 'Evolução dos 3 Grandes Eixos',
+                'pagina-3': 'Análise Estratégica DADI'
+            };
+            document.getElementById('page-title').innerText = titles[sectionId];
+
+            const sidebar = document.getElementById('sidebar');
+            if(!sidebar.classList.contains('hidden') && window.innerWidth < 768) {
+                toggleMobileMenu();
+            }
+
+            renderCharts(sectionId);
+        }
+
+        function renderCharts(section) {
+            if (section === 'pagina-1') {
+                const ctxRanking = document.getElementById('rankingChart');
+                const ctxRadar = document.getElementById('radarComponentesChart');
+                const ctxLinha = document.getElementById('historicoLinhaChart');
+
+                if (!charts.ranking && ctxRanking) {
+                    charts.ranking = new Chart(ctxRanking.getContext('2d'), { 
+                        type: 'line', 
+                        data: { 
+                            labels: ['2024', '2025', '2026'], 
+                            datasets: [
+                                { label: 'Ranking Nacional', data: [565, 183, 169], borderColor: '#16a34a', borderWidth: 3, pointRadius: 5 }, 
+                                { label: 'Ranking Estadual (SP)', data: [283, 116, 111], borderColor: '#003366', borderWidth: 3, pointRadius: 5 }
+                            ] 
+                        }, 
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { reverse: true, min: 100, max: 600 } } } 
+                    });
+                }
+                
+                // Nomes por extenso formatados em arrays para quebrar a linha elegantemente no Radar e caber bem.
+                if (!charts.radarComponentes && ctxRadar) {
+                    charts.radarComponentes = new Chart(ctxRadar.getContext('2d'), {
+                        type: 'radar',
+                        data: {
+                            labels: [
+                                ['Nutrição e', 'Cuidados Básicos'], 
+                                ['Água e', 'Saneamento'], 
+                                'Moradia', 
+                                ['Segurança', 'Pessoal'], 
+                                ['Acesso ao', 'Conhecimento'], 
+                                ['Acesso à', 'Informação'], 
+                                ['Saúde e', 'Bem-Estar'], 
+                                ['Qualidade do', 'Meio Ambiente'], 
+                                ['Direitos', 'Individuais'], 
+                                ['Liberdade', 'Pessoal'], 
+                                ['Inclusão', 'Social'], 
+                                ['Acesso ao', 'Ensino Superior']
+                            ],
+                            datasets: [{ label: 'Pontuação 2026', data: [75.72, 92.81, 96.21, 69.58, 86.77, 85.94, 57.49, 65.84, 44.86, 53.86, 35.04, 52.70], backgroundColor: 'rgba(0, 51, 102, 0.2)', borderColor: '#003366', pointBackgroundColor: '#ffb800', borderWidth: 2 }]
+                        },
+                        options: { 
+                            responsive: true, 
+                            maintainAspectRatio: false, 
+                            scales: { r: { ticks: { display: false, min: 0, max: 100 }, pointLabels: { font: { size: 10, family: "'Poppins', sans-serif" } } } }, 
+                            plugins: { legend: { display: false } } 
+                        }
+                    });
+                }
+                if (!charts.historicoLinha && ctxLinha) {
+                    charts.historicoLinha = new Chart(ctxLinha.getContext('2d'), {
+                        type: 'line',
+                        data: { 
+                            labels: ['2024', '2025', '2026'], 
+                            datasets: [{ label: 'IPS Geral', data: [64.32, 66.60, 68.07], borderColor: '#16a34a', backgroundColor: 'rgba(22, 163, 74, 0.1)', borderWidth: 3, pointBackgroundColor: '#fff', pointBorderColor: '#16a34a', pointRadius: 5, fill: true, tension: 0.3 }] 
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 62, max: 70 } } }
+                    });
+                }
+            }
+            if (section === 'pagina-2') {
+                const ctxEixos = document.getElementById('eixosChart');
+                const ctxComp = document.getElementById('comparativoBrasilChart');
+
+                if(!charts.eixos && ctxEixos) {
+                    charts.eixos = new Chart(ctxEixos.getContext('2d'), { 
+                        type: 'bar', 
+                        data: { 
+                            labels: ['Necessidades Básicas', 'Fundamentos do Bem-Estar', 'Oportunidades'], 
+                            datasets: [
+                                { label: '2024', data: [81.17, 72.64, 39.14], backgroundColor: '#cbd5e1' }, 
+                                { label: '2025', data: [83.72, 69.84, 46.25], backgroundColor: '#64748b' },
+                                { label: '2026', data: [83.58, 74.01, 46.61], backgroundColor: '#003366' }
+                            ] 
+                        }, 
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } } 
+                    });
+                }
+                
+                // Atualizado para usar os nomes sem abreviações
+                if(!charts.comparativoBrasil && ctxComp) {
+                    charts.comparativoBrasil = new Chart(ctxComp.getContext('2d'), { 
+                        type: 'bar', 
+                        data: { 
+                            labels: [
+                                ['Nutrição e', 'Cuidados'], ['Água e', 'Saneamento'], 'Moradia', ['Segurança', 'Pessoal'], 
+                                ['Acesso ao', 'Conhecimento'], ['Acesso à', 'Informação'], ['Saúde e', 'Bem-Estar'], ['Qualidade do', 'Meio Ambiente'], 
+                                ['Direitos', 'Individuais'], ['Liberdade', 'Pessoal'], ['Inclusão', 'Social'], ['Ensino', 'Superior']
+                            ], 
+                            datasets: [
+                                { label: 'Olímpia (2026)', data: [75.72, 92.81, 96.21, 69.58, 86.77, 85.94, 57.49, 65.84, 44.86, 53.86, 35.04, 52.70], backgroundColor: '#003366' }, 
+                                { label: 'Média Brasil (2026)', data: [75.00, 80.00, 85.00, 58.32, 72.00, 79.81, 57.96, 65.47, 50.00, 55.00, 47.22, 35.06], backgroundColor: '#16a34a' }
+                            ] 
+                        }, 
+                        options: { 
+                            responsive: true, 
+                            maintainAspectRatio: false, 
+                            plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+                            scales: { x: { ticks: { font: { size: 9 }, maxRotation: 45, minRotation: 0, autoSkip: false } }, y: { min: 0, max: 100 } }
+                        } 
+                    });
+                }
+            }
+        }
+        
+        // Init
+        window.onload = function() {
+            renderCharts('pagina-1');
+        };
+    </script>
+</body>
+</html>
