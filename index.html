@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evolução do IPS</title>
+    <title>Evolução do IPS - Análise Estratégica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -116,7 +116,7 @@
 
                 <!-- Info Box -->
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg mb-8 text-sm text-blue-900 font-medium shadow-sm">
-                    <i class="fa-solid fa-circle-info mr-2 text-blue-600"></i> O crescimento acumulado de <strong>+3,75 pontos</strong> em apenas dois ciclos representa uma evolução bastante relevante dentro da metodologia do IPS, pois normalmente os avanços nestes indicadores são lentos e graduais.
+                    <i class="fa-solid fa-circle-info mr-2 text-blue-600"></i> A evolução demonstra que Olímpia não apenas melhorou internamente, mas evoluiu mais rápido que centenas de municípios brasileiros, subindo <strong>396 posições nacionalmente</strong> e <strong>172 posições estadualmente</strong> entre 2024 e 2026.
                 </div>
 
                 <!-- SEÇÃO 1: VISÃO MACRO (Gráficos Gerais) -->
@@ -128,7 +128,7 @@
                     </div>
                     <div class="card p-6 flex flex-col">
                         <h4 class="font-black text-navy text-sm uppercase tracking-widest border-b-2 border-gold pb-2 w-full mb-2">Evolução nos Rankings</h4>
-                        <p class="text-xs text-gray-500 mb-4 font-medium italic">Comparativo do salto posicional do município no cenário estadual (SP) e nacional.</p>
+                        <p class="text-xs text-gray-500 mb-4 font-medium italic">Comparativo do salto posicional de Olímpia no cenário estadual (SP) e nacional.</p>
                         <div class="h-64 w-full relative mt-auto"><canvas id="rankingChart"></canvas></div>
                     </div>
                 </div>
@@ -149,41 +149,50 @@
                                 <span class="flex items-center"><span class="w-3 h-3 bg-green-700 rounded mr-1"></span>Consolidado (&gt;85)</span>
                             </div>
                         </div>
-                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Distribuição exata das notas. Cores quentes (vermelho) indicam áreas críticas, enquanto cores frias (verde) indicam consolidação.</p>
+                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Distribuição exata das notas reais dos 12 subcomponentes de Olímpia para o ano de 2026.</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Eixo 1 -->
                             <div class="space-y-2">
-                                <div class="bg-navy text-white text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Necessidades Básicas</div>
-                                <div class="bg-green-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Nutrição e Cuidados Básicos</span> <span class="font-black">75,72</span></div>
+                                <div class="bg-navy text-white text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Necessidades Básicas (83,58)</div>
+                                <div class="bg-green-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Nutrição e Cuidados Médicos</span> <span class="font-black">75,72</span></div>
                                 <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Água e Saneamento</span> <span class="font-black">92,81</span></div>
                                 <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Moradia</span> <span class="font-black">96,21</span></div>
                                 <div class="bg-yellow-400 text-navy p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Segurança Pessoal</span> <span class="font-black">69,58</span></div>
                             </div>
                             <!-- Eixo 2 -->
                             <div class="space-y-2">
-                                <div class="bg-gold text-navy text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Fundamentos do Bem-Estar</div>
-                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso ao Conhecimento</span> <span class="font-black">86,77</span></div>
-                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso à Informação</span> <span class="font-black">85,94</span></div>
+                                <div class="bg-gold text-navy text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Fundamentos do Bem-Estar (74,01)</div>
+                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso ao Conhecimento Básico</span> <span class="font-black">86,77</span></div>
+                                <div class="bg-green-700 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso à Informação e Com.</span> <span class="font-black">85,94</span></div>
                                 <div class="bg-orange-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Saúde e Bem-Estar</span> <span class="font-black">57,49</span></div>
                                 <div class="bg-yellow-400 text-navy p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Qualidade do Meio Ambiente</span> <span class="font-black">65,84</span></div>
                             </div>
                             <!-- Eixo 3 -->
                             <div class="space-y-2">
-                                <div class="bg-navy text-white text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Oportunidades</div>
+                                <div class="bg-navy text-white text-[10px] font-bold p-2 text-center rounded uppercase tracking-widest">Oportunidades (46,61)</div>
                                 <div class="bg-red-600 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Direitos Individuais</span> <span class="font-black">44,86</span></div>
-                                <div class="bg-orange-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Liberdade Pessoal</span> <span class="font-black">53,86</span></div>
+                                <div class="bg-orange-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Liberdades Individuais</span> <span class="font-black">53,86</span></div>
                                 <div class="bg-red-600 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Inclusão Social</span> <span class="font-black">35,04</span></div>
-                                <div class="bg-orange-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso ao Ensino Superior</span> <span class="font-black">52,70</span></div>
+                                <div class="bg-orange-500 text-white p-3 rounded flex justify-between items-center"><span class="text-xs font-semibold">Acesso à Educação Superior</span> <span class="font-black">52,70</span></div>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     <!-- Radar -->
                     <div class="card p-6">
                         <h4 class="font-black text-navy text-sm mb-2 uppercase tracking-widest border-b-2 border-gold pb-2 w-full">Análise Radial Estrutural</h4>
-                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Representação gráfica do equilíbrio do município. Quanto mais largo e preenchido for o polígono, mais forte e equilibrado é o desenvolvimento em todas as áreas.</p>
+                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Equilíbrio do progresso social em Olímpia para 2026. Quanto mais largo e preenchido for o polígono, mais avançada e harmônica é a cidade.</p>
                         <div class="h-96 w-full relative"><canvas id="radarComponentesChart"></canvas></div>
+                    </div>
+
+                    <!-- Elite Nacional -->
+                    <div class="card p-6">
+                        <h4 class="font-black text-navy text-sm mb-2 uppercase tracking-widest border-b-2 border-gold pb-2 w-full">Comparativo Geral - Elite Nacional</h4>
+                        <p class="text-xs text-gray-500 mb-6 font-medium italic">Olímpia (+4,67 acima do Brasil e -5,03 da melhor cidade - Gavião Peixoto) está muito próxima do grupo de elite nacional do IPS.</p>
+                        <div class="h-96 w-full relative"><canvas id="eliteChart"></canvas></div>
                     </div>
                 </div>
 
@@ -196,18 +205,18 @@
                     <!-- Eixo 1 -->
                     <div class="card overflow-hidden">
                         <div class="bg-navy p-4 flex justify-between items-center text-white">
-                            <h5 class="font-bold text-xs uppercase tracking-widest">Necessidades Básicas</h5>
+                            <h5 class="font-bold text-xs uppercase tracking-widest">Necessidades Humanas Básicas</h5>
                             <i class="fa-solid fa-house-chimney-medical text-gold"></i>
                         </div>
                         <div class="p-5 space-y-3">
                             <div class="flex justify-between items-center border-b pb-2">
                                 <span class="text-4xl font-black text-navy">83,58</span>
-                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Estabilidade</span>
+                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Consolidado</span>
                             </div>
                             <ul class="text-xs space-y-2 mt-4 text-gray-600">
                                 <li><strong>Histórico:</strong> 81,17 (2024) → 83,72 (2025) → 83,58 (2026)</li>
-                                <li class="text-green-700"><strong>Destaques:</strong> Eixo muito consolidado. Pontos elevadíssimos em Moradia (96,23) e Água e Saneamento.</li>
-                                <li class="text-red-600 mt-2 p-2 bg-red-50 rounded"><strong>Ponto Crítico:</strong> Segurança pessoal (65,57) configura fragilidade importante desde 2024.</li>
+                                <li class="text-green-700"><strong>Destaques:</strong> Quase 9 pontos acima da média nacional (74,58). Pontos excelentes em Moradia (96,21) e Água/Saneamento (92,81).</li>
+                                <li class="text-red-600 mt-2 p-2 bg-red-50 rounded"><strong>Fragilidade:</strong> Segurança pessoal (69,58). Embora acima da média nacional (58,59), teve leve queda em relação a 2025.</li>
                             </ul>
                         </div>
                     </div>
@@ -221,12 +230,12 @@
                         <div class="p-5 space-y-3">
                             <div class="flex justify-between items-center border-b pb-2">
                                 <span class="text-4xl font-black text-navy">74,01</span>
-                                <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">Recuperação</span>
+                                <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">+5,20 vs BR</span>
                             </div>
                             <ul class="text-xs space-y-2 mt-4 text-gray-600">
                                 <li><strong>Histórico:</strong> 72,64 (2024) → 69,84 (2025) → 74,01 (2026)</li>
-                                <li class="text-green-700"><strong>Destaques:</strong> Apresentou o principal avanço estrutural no último ano.</li>
-                                <li class="mt-2 p-2 bg-yellow-50 rounded border-l-2 border-gold text-gray-800">Melhorias consistentes em conectividade, acesso à informação, ambiente urbano e qualidade ambiental.</li>
+                                <li class="text-green-700"><strong>Destaques:</strong> Destaque para Acesso à Informação e Comunicação (85,94) impulsionado por alta conectividade e infraestrutura digital.</li>
+                                <li class="text-orange-700 mt-2 p-2 bg-orange-50 rounded"><strong>Atenção:</strong> Saúde e Bem-estar (57,49 vs 57,96 BR). Empate técnico com a média nacional aponta desafios em saúde preventiva.</li>
                             </ul>
                         </div>
                     </div>
@@ -244,8 +253,8 @@
                             </div>
                             <ul class="text-xs space-y-2 mt-4 text-gray-600">
                                 <li><strong>Histórico:</strong> 39,14 (2024) → 46,25 (2025) → 46,61 (2026)</li>
-                                <li class="text-green-700"><strong>Destaques:</strong> Maior transformação estrutural do município.</li>
-                                <li class="mt-2 p-2 bg-gray-100 rounded text-gray-800 italic">Em 2024 era o principal gargalo (Inclusão: 27,36). O crescimento econômico não se convertia em inclusão social.</li>
+                                <li class="text-green-700"><strong>Destaques:</strong> Representou a maior transformação estrutural do município no período (+7,47 pontos acumulados).</li>
+                                <li class="text-red-600 mt-2 p-2 bg-red-50 rounded"><strong>Gargalo:</strong> Inclusão Social (35,04 vs 47,22 BR). Foco crítico necessário em violência doméstica, desigualdade e equidade.</li>
                             </ul>
                         </div>
                     </div>
@@ -261,6 +270,23 @@
                         <div class="h-80 w-full relative"><canvas id="comparativoBrasilChart"></canvas></div>
                     </div>
                 </div>
+
+                <!-- Detalhamento Individual dos Subcomponentes (Comparação com Gavião Peixoto) -->
+                <h3 class="text-lg font-black text-navy uppercase tracking-tighter mb-4 px-1 border-l-4 border-navy pl-3 mt-8">Detalhamento dos Eixos e Subcomponentes (Olímpia vs Gavião Peixoto - 1º BR)</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-5">
+                        <h5 class="font-bold text-xs uppercase tracking-widest text-navy mb-2 border-b pb-1">Subcomponentes: Necessidades Básicas</h5>
+                        <div class="h-64 w-full relative"><canvas id="subEixo1Chart"></canvas></div>
+                    </div>
+                    <div class="card p-5">
+                        <h5 class="font-bold text-xs uppercase tracking-widest text-navy mb-2 border-b pb-1">Subcomponentes: Bem-estar</h5>
+                        <div class="h-64 w-full relative"><canvas id="subEixo2Chart"></canvas></div>
+                    </div>
+                    <div class="card p-5">
+                        <h5 class="font-bold text-xs uppercase tracking-widest text-navy mb-2 border-b pb-1">Subcomponentes: Oportunidades</h5>
+                        <div class="h-64 w-full relative"><canvas id="subEixo3Chart"></canvas></div>
+                    </div>
+                </div>
             </section>
 
             <!-- PÁGINA 3: ANÁLISE ESTRATÉGICA -->
@@ -274,7 +300,7 @@
                         </h4>
                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 h-full">
                             <p class="text-xs font-bold text-navy uppercase mb-2">Base Desigual</p>
-                            <p class="text-xs text-gray-800">Município economicamente forte, infraestrutura bem estabelecida, porém com desigualdade social e estrutural muito elevada.</p>
+                            <p class="text-xs text-gray-800">Município economicamente forte com infraestrutura bem estabelecida, porém com severas fragilidades na área de Oportunidades e Inclusão Social (27,36).</p>
                         </div>
                     </div>
 
@@ -284,7 +310,7 @@
                         </h4>
                         <div class="p-4 bg-blue-50 rounded-lg border border-blue-200 h-full">
                             <p class="text-xs font-bold text-navy uppercase mb-2">Construção Social</p>
-                            <p class="text-xs text-gray-800">Fase focada na consolidação da base social do município, mitigando os principais gargalos e carências.</p>
+                            <p class="text-xs text-gray-800">Foco na consolidação da infraestrutura urbana básica e recuperação social, mitigando os principais gargalos e carências do município.</p>
                         </div>
                     </div>
 
@@ -294,52 +320,61 @@
                         </h4>
                         <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200 h-full">
                             <p class="text-xs font-bold text-navy uppercase mb-2">Avanço em Oportunidades</p>
-                            <p class="text-xs text-gray-800">Avanço expressivo em bem-estar geral e ampliação do acesso a oportunidades e equidade humana.</p>
+                            <p class="text-xs text-gray-800">Avanço expressivo em bem-estar geral e maior transformação no eixo de Oportunidades (+7,47 acumulado no ciclo), transitando para equidade e inclusão.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div class="card p-6 border-l-8 border-green-600">
-                        <h4 class="font-black text-green-700 text-sm mb-4 uppercase tracking-widest">PONTOS CONSOLIDADOS</h4>
+                        <h4 class="font-black text-green-700 text-sm mb-4 uppercase tracking-widest">PONTOS CONSOLIDADOS (SUPERADOS VS BRASIL)</h4>
                         <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Saneamento Básico</span>
-                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Urbanização</span>
-                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Moradia</span>
-                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Educação Básica</span>
-                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Conectividade</span>
-                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Crescimento Econômico</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Necessidades Humanas Básicas (+9,0 pts vs BR)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Fundamentos do Bem-estar (+5,20 pts vs BR)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Moradia Execocional (96,21)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Água e Saneamento Forte (92,81)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Acesso ao Conhecimento Básico (86,77)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Conectividade Digital Elevada (85,94)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Educação Superior Forte (52,70)</span>
+                            <span class="bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[11px] font-bold border border-green-200">Evolução Consistente do IPS (2024-2026)</span>
                         </div>
                     </div>
                     
                     <div class="card p-6 border-l-8 border-red-500">
-                        <h4 class="font-black text-red-600 text-sm mb-4 uppercase tracking-widest">PRINCIPAIS DESAFIOS</h4>
+                        <h4 class="font-black text-red-600 text-sm mb-4 uppercase tracking-widest">PRINCIPAIS DESAFIOS E GARGALOS</h4>
                         <ul class="space-y-3 mt-4">
                             <li class="flex items-start text-xs font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Inclusão social e equidade contínua.
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> <strong>Inclusão Social (35,04 vs 47,22 BR):</strong> Violência contra a mulher, desigualdade racial, exclusão e baixa equidade social.
                             </li>
                             <li class="flex items-start text-xs font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Combate à violência estrutural e índices de segurança pessoal.
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> <strong>Direitos Individuais (44,86 vs 54,94 BR) & Liberdades (53,86 vs 65,84 BR):</strong> Baixa performance estrutural.
                             </li>
                             <li class="flex items-start text-xs font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Atenção prioritária à juventude vulnerável e igualdade racial/gênero.
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> <strong>Saúde e Bem-estar (57,49 vs 57,96 BR):</strong> Necessidade de políticas preventivas de obesidade e doenças crônicas.
                             </li>
                             <li class="flex items-start text-xs font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> Geração e acesso a oportunidades e educação avançadas.
+                                <i class="fa-solid fa-circle-xmark mt-0.5 mr-2 text-red-500"></i> <strong>Segurança Pessoal (69,58):</strong> Leve queda recente, exigindo foco contínuo.
                             </li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Divergência Estratégica: Olímpia vs Brasil -->
+                <div class="card p-6 mb-8">
+                    <h4 class="font-black text-navy text-sm mb-2 uppercase tracking-widest border-b-2 border-gold pb-2 w-full">Divergência Estratégica: Vantagens Competitivas vs Gargalos Estruturais</h4>
+                    <p class="text-xs text-gray-500 mb-6 font-medium italic">Gráfico analítico exibindo a diferença exata (em pontos) entre Olímpia e a média do Brasil em cada componente. Valores positivos indicam progresso superior ao nacional, enquanto valores negativos indicam áreas críticas urgentes.</p>
+                    <div class="h-96 w-full relative"><canvas id="divergenciaChart"></canvas></div>
+                </div>
+
                 <div class="card p-8 bg-gradient-to-br from-[#003366] to-[#1e3a8a] text-white border-none shadow-2xl relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl text-gold"><i class="fa-solid fa-pen-nib"></i></div>
-                    <h4 class="text-2xl font-black uppercase tracking-tighter mb-4 text-gold italic">DIAGNÓSTICO E PROJEÇÃO FINAL</h4>
+                    <h4 class="text-2xl font-black uppercase tracking-tighter mb-4 text-gold italic">DIAGNÓSTICO E PROJEÇÃO FINAL DADI</h4>
                     <p class="text-sm font-light leading-relaxed max-w-4xl mb-4">
-                        O município resolveu boa parte da infraestrutura básica, começou a converter o crescimento econômico em bem-estar palpável para os cidadãos e entra agora em uma fase complexa de gestão voltada estritamente para equidade, inclusão, capital humano e oportunidades integradas.
+                        O município de Olímpia resolveu com excelência boa parte de sua infraestrutura física primária (saneamento, moradia, conectividade e educação básica), convertendo efetivamente o crescimento econômico em bem-estar palpável. A gestão agora entra em sua etapa mais complexa: o avanço em oportunidades integradas, inclusão real, equidade e desenvolvimento humano de nível avançado.
                     </p>
                     <div class="bg-black/20 p-4 rounded-lg border-l-4 border-gold mt-6">
                         <p class="text-sm font-bold leading-relaxed text-white">
-                            <i class="fa-solid fa-arrow-trend-up text-gold mr-2"></i> TENDÊNCIA PROJETADA: Se mantiver o ritmo atual, o município possui potencial real de ultrapassar os 70 pontos no IPS em curto prazo. Isso o consolidará entre os municípios com melhor desenvolvimento social do interior paulista.
+                            <i class="fa-solid fa-arrow-trend-up text-gold mr-2"></i> TENDÊNCIA PROJETADA: Se mantiver o crescimento econômico alinhado ao planejamento intersetorial e governança baseada em indicadores, o município possui potencial real de ultrapassar a barreira de 70 pontos no IPS geral no curto prazo, consolidando sua presença na elite de desenvolvimento social paulista.
                         </p>
                     </div>
                 </div>
@@ -404,6 +439,18 @@
                 const ctxRanking = document.getElementById('rankingChart');
                 const ctxRadar = document.getElementById('radarComponentesChart');
                 const ctxLinha = document.getElementById('historicoLinhaChart');
+                const ctxElite = document.getElementById('eliteChart');
+
+                if (!charts.historicoLinha && ctxLinha) {
+                    charts.historicoLinha = new Chart(ctxLinha.getContext('2d'), {
+                        type: 'line',
+                        data: { 
+                            labels: ['2024', '2025', '2026'], 
+                            datasets: [{ label: 'IPS Geral', data: [64.32, 66.60, 68.07], borderColor: '#16a34a', backgroundColor: 'rgba(22, 163, 74, 0.1)', borderWidth: 3, pointBackgroundColor: '#fff', pointBorderColor: '#16a34a', pointRadius: 5, fill: true, tension: 0.3 }] 
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 62, max: 70 } } }
+                    });
+                }
 
                 if (!charts.ranking && ctxRanking) {
                     charts.ranking = new Chart(ctxRanking.getContext('2d'), { 
@@ -419,7 +466,6 @@
                     });
                 }
                 
-                // Nomes por extenso formatados em arrays para quebrar a linha elegantemente no Radar e caber bem.
                 if (!charts.radarComponentes && ctxRadar) {
                     charts.radarComponentes = new Chart(ctxRadar.getContext('2d'), {
                         type: 'radar',
@@ -436,38 +482,54 @@
                                 ['Direitos', 'Individuais'], 
                                 ['Liberdade', 'Pessoal'], 
                                 ['Inclusão', 'Social'], 
-                                ['Acesso ao', 'Ensino Superior']
+                                ['Educação', 'Superior']
                             ],
                             datasets: [{ label: 'Pontuação 2026', data: [75.72, 92.81, 96.21, 69.58, 86.77, 85.94, 57.49, 65.84, 44.86, 53.86, 35.04, 52.70], backgroundColor: 'rgba(0, 51, 102, 0.2)', borderColor: '#003366', pointBackgroundColor: '#ffb800', borderWidth: 2 }]
                         },
                         options: { 
                             responsive: true, 
                             maintainAspectRatio: false, 
-                            scales: { r: { ticks: { display: false, min: 0, max: 100 }, pointLabels: { font: { size: 10, family: "'Poppins', sans-serif" } } } }, 
+                            scales: { r: { ticks: { display: false, min: 0, max: 100 }, pointLabels: { font: { size: 9, family: "'Poppins', sans-serif" } } } }, 
                             plugins: { legend: { display: false } } 
                         }
                     });
                 }
-                if (!charts.historicoLinha && ctxLinha) {
-                    charts.historicoLinha = new Chart(ctxLinha.getContext('2d'), {
-                        type: 'line',
-                        data: { 
-                            labels: ['2024', '2025', '2026'], 
-                            datasets: [{ label: 'IPS Geral', data: [64.32, 66.60, 68.07], borderColor: '#16a34a', backgroundColor: 'rgba(22, 163, 74, 0.1)', borderWidth: 3, pointBackgroundColor: '#fff', pointBorderColor: '#16a34a', pointRadius: 5, fill: true, tension: 0.3 }] 
+
+                if (!charts.elite && ctxElite) {
+                    charts.elite = new Chart(ctxElite.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Gavião Peixoto (1º BR)', 'Olímpia', 'Média Brasil'],
+                            datasets: [{
+                                label: 'IPS Geral 2026',
+                                data: [73.10, 68.07, 63.40],
+                                backgroundColor: ['#ffb800', '#003366', '#94a3b8'],
+                                borderRadius: 6
+                            }]
                         },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 62, max: 70 } } }
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: { x: { min: 50, max: 80 } }
+                        }
                     });
                 }
             }
+
             if (section === 'pagina-2') {
                 const ctxEixos = document.getElementById('eixosChart');
                 const ctxComp = document.getElementById('comparativoBrasilChart');
+                const ctxSub1 = document.getElementById('subEixo1Chart');
+                const ctxSub2 = document.getElementById('subEixo2Chart');
+                const ctxSub3 = document.getElementById('subEixo3Chart');
 
                 if(!charts.eixos && ctxEixos) {
                     charts.eixos = new Chart(ctxEixos.getContext('2d'), { 
                         type: 'bar', 
                         data: { 
-                            labels: ['Necessidades Básicas', 'Fundamentos do Bem-Estar', 'Oportunidades'], 
+                            labels: ['Nec. Humanas Básicas', 'Fund. do Bem-Estar', 'Oportunidades'], 
                             datasets: [
                                 { label: '2024', data: [81.17, 72.64, 39.14], backgroundColor: '#cbd5e1' }, 
                                 { label: '2025', data: [83.72, 69.84, 46.25], backgroundColor: '#64748b' },
@@ -478,7 +540,6 @@
                     });
                 }
                 
-                // Atualizado para usar os nomes sem abreviações
                 if(!charts.comparativoBrasil && ctxComp) {
                     charts.comparativoBrasil = new Chart(ctxComp.getContext('2d'), { 
                         type: 'bar', 
@@ -490,7 +551,7 @@
                             ], 
                             datasets: [
                                 { label: 'Olímpia (2026)', data: [75.72, 92.81, 96.21, 69.58, 86.77, 85.94, 57.49, 65.84, 44.86, 53.86, 35.04, 52.70], backgroundColor: '#003366' }, 
-                                { label: 'Média Brasil (2026)', data: [75.00, 80.00, 85.00, 58.32, 72.00, 79.81, 57.96, 65.47, 50.00, 55.00, 47.22, 35.06], backgroundColor: '#16a34a' }
+                                { label: 'Média Brasil (2026)', data: [74.24, 77.53, 87.95, 58.59, 76.11, 79.81, 57.96, 61.34, 54.94, 65.84, 47.22, 39.14], backgroundColor: '#16a34a' }
                             ] 
                         }, 
                         options: { 
@@ -499,6 +560,80 @@
                             plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
                             scales: { x: { ticks: { font: { size: 9 }, maxRotation: 45, minRotation: 0, autoSkip: false } }, y: { min: 0, max: 100 } }
                         } 
+                    });
+                }
+
+                if(!charts.subEixo1 && ctxSub1) {
+                    charts.subEixo1 = new Chart(ctxSub1.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Nutrição/Cuidados', 'Saneamento', 'Moradia', 'Segurança'],
+                            datasets: [
+                                { label: 'Olímpia', data: [75.72, 92.81, 96.21, 69.58], backgroundColor: '#003366' },
+                                { label: 'Gavião Peixoto (1º BR)', data: [81.38, 89.99, 97.09, 80.46], backgroundColor: '#ffb800' }
+                            ]
+                        },
+                        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } }, scales: { x: { min: 50, max: 100 } } }
+                    });
+                }
+
+                if(!charts.subEixo2 && ctxSub2) {
+                    charts.subEixo2 = new Chart(ctxSub2.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Conhecimento', 'Conectividade', 'Saúde/Bem-estar', 'Qualidade Amb.'],
+                            datasets: [
+                                { label: 'Olímpia', data: [86.77, 85.94, 57.49, 65.84], backgroundColor: '#003366' },
+                                { label: 'Gavião Peixoto (1º BR)', data: [85.67, 90.40, 53.11, 61.62], backgroundColor: '#ffb800' }
+                            ]
+                        },
+                        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } }, scales: { x: { min: 40, max: 100 } } }
+                    });
+                }
+
+                if(!charts.subEixo3 && ctxSub3) {
+                    charts.subEixo3 = new Chart(ctxSub3.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Direitos', 'Liberdades', 'Inclusão', 'Ensino Superior'],
+                            datasets: [
+                                { label: 'Olímpia', data: [44.86, 53.86, 35.04, 52.70], backgroundColor: '#003366' },
+                                { label: 'Gavião Peixoto (1º BR)', data: [40.01, 57.37, 77.62, 62.54], backgroundColor: '#ffb800' }
+                            ]
+                        },
+                        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } }, scales: { x: { min: 0, max: 85 } } }
+                    });
+                }
+            }
+
+            if (section === 'pagina-3') {
+                const ctxDivergencia = document.getElementById('divergenciaChart');
+
+                if(!charts.divergencia && ctxDivergencia) {
+                    const dataVals = [1.48, 15.28, 8.26, 10.99, 10.66, 6.13, -0.47, 4.50, -10.08, -11.98, -12.18, 13.56];
+                    charts.divergencia = new Chart(ctxDivergencia.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Nutrição', 'Saneamento', 'Moradia', 'Segurança Pessoal', 'Conhecimento', 'Conectividade', 'Saúde e Bem-estar', 'Qualidade Ambient.', 'Direitos', 'Liberdades', 'Inclusão Social', 'Ensino Superior'],
+                            datasets: [{
+                                label: 'Diferença em relação ao Brasil (Pontos)',
+                                data: dataVals,
+                                backgroundColor: dataVals.map(v => v >= 0 ? '#16a34a' : '#dc2626'),
+                                borderRadius: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: {
+                                    title: { display: true, text: 'Pontos (+ Vantagem / - Gargalo)', font: { weight: 'bold' } }
+                                }
+                            }
+                        }
                     });
                 }
             }
